@@ -139,6 +139,10 @@ export interface DashboardStats {
       date: string;
       revenue: number;
     }>;
+    spendingByPeriod?: Array<{
+      date: string;
+      spending: number;
+    }>;
     topEvents?: Array<{
       id: string;
       name: string;
@@ -146,8 +150,12 @@ export interface DashboardStats {
       attendees: number;
     }>;
     eventStatusDistribution?: Array<{
-      status: string;
-      count: number;
+      name: string;
+      value: number;
+    }>;
+    categoryDistribution?: Array<{
+      name: string;
+      value: number;
     }>;
   };
   referralCode?: string;

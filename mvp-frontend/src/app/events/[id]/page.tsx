@@ -39,7 +39,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { eventAPI, reviewAPI } from "@/lib/api";
-import { Event, Ticket as TicketType, Review } from "@/types";
+import { Event, Review } from "@/types";
 import { toast } from "sonner";
 
 export default function EventDetailsPage() {
@@ -71,7 +71,6 @@ export default function EventDetailsPage() {
       } catch (err) {
         console.error("Error fetching event details:", err);
         setError("Failed to load event details. Please try again.");
-        toast.error("Failed to load event details");
       } finally {
         setLoading(false);
       }
@@ -128,18 +127,11 @@ export default function EventDetailsPage() {
 
   const handlePurchase = async () => {
     try {
-      const items = Object.entries(selectedTickets).map(
-        ([ticketId, quantity]) => ({
-          ticketId,
-          quantity,
-        })
-      );
-
       // TODO: Implement actual purchase logic
       toast.success("Purchase successful!");
       setIsPurchaseDialogOpen(false);
       setSelectedTickets({});
-    } catch (error) {
+    } catch {
       toast.error("Purchase failed. Please try again.");
     }
   };
