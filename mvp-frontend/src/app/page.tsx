@@ -53,7 +53,6 @@ export default function HomePage() {
   const [categoryFilter, setCategoryFilter] = useState("All Categories");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalEvents, setTotalEvents] = useState(0);
 
   // Debounce search term
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -89,7 +88,6 @@ export default function HomePage() {
 
       setEvents(response.events || []);
       setTotalPages(response.pagination?.totalPages || 1);
-      setTotalEvents(response.pagination?.total || 0);
     } catch (err) {
       console.error("Error fetching events:", err);
       setError("Failed to load events. Please try again.");
@@ -222,11 +220,11 @@ export default function HomePage() {
       <header className="px-4 lg:px-6 h-14 flex items-center border-b">
         <Link href="/" className="flex items-center justify-center gap-2">
           <CalendarDays className="size-6" />
-          <span className="text-lg font-semibold">EventFinder</span>
+          <span className="text-lg font-semibold">EventHub</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link
-            href="/events"
+            href="/"
             className="text-sm font-medium hover:underline underline-offset-4"
           >
             Browse Events
@@ -238,10 +236,16 @@ export default function HomePage() {
             Dashboard
           </Link>
           <Link
-            href="/about"
+            href="/transactions"
             className="text-sm font-medium hover:underline underline-offset-4"
           >
-            About
+            Transactions
+          </Link>
+          <Link
+            href="/profile"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
+            Profile
           </Link>
         </nav>
       </header>
